@@ -1,0 +1,9 @@
+services:
+  nginx:
+    image: nginx:1-alpine
+    ports:
+      - 8089:80
+    # the base nginx config automatically serves static files from /usr/share/nginx/html
+    # we can create a mapping of the static files in our directory as a volume in docker compose
+    volumes:
+      - ./static/:/usr/share/nginx/html
