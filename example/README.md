@@ -1,4 +1,4 @@
-# Basic SSL Proxy and Load Balancer
+# Basic SSL Reverse Proxy and Load Balancer
 
 ## Node Servers and Containerization
 
