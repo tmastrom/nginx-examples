@@ -1,0 +1,25 @@
+services:
+  vue1:
+    image: nginx:1-alpine
+    ports:
+      - 5001:80
+    # the base nginx config automatically serves static files from /usr/share/nginx/html
+    # we can create a mapping of the static files in our directory as a volume in docker compose
+    volumes:
+      - ./dist/:/usr/share/nginx/html
+  vue2:
+    image: nginx:1-alpine
+    ports:
+      - 5002:80
+    # the base nginx config automatically serves static files from /usr/share/nginx/html
+    # we can create a mapping of the static files in our directory as a volume in docker compose
+    volumes:
+      - ./dist/:/usr/share/nginx/html
+  vue3:
+    image: nginx:1-alpine
+    ports:
+      - 5003:80
+    # the base nginx config automatically serves static files from /usr/share/nginx/html
+    # we can create a mapping of the static files in our directory as a volume in docker compose
+    volumes:
+      - ./dist/:/usr/share/nginx/html
