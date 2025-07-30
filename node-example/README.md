@@ -1,4 +1,4 @@
-# Basic SSL Reverse Proxy and Load Balancer
+# Reverse Proxy for a Node Server with SSL Example
 
 ## Node Servers and Containerization
 
