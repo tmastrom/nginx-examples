@@ -38,13 +38,15 @@ server {
 	server_name api.example.com;
 
 	location / {
-		proxy_pass http://backend_server_address;
+		proxy_pass http://backend_server_address/;
 		proxy_set_header Host $host;
 		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 		proxy_set_header X-Forwared-Proto $scheme;
 	}
 }
 ```
+
+NOTE: it is very important to have the trailing `/` on the proxy address!
 
 ## Load Balancing Template
 
@@ -67,7 +69,7 @@ http {
 
         location / {
             # proxy all requests to the myapp1 server group
-            proxy_pass http://myapp1;
+            proxy_pass http://myapp1/;
         }
     }
 }
@@ -113,7 +115,7 @@ The following examples can be run locally by editing the `nginx.conf` on your lo
 
 You can find the location of your nginx install with `nginx -V` and finding the `--conf-path`. For me it is `/opt/homebrew/etc/nginx/nginx.conf`.
 
-## Serving a static site with docker compose
+## Serving a Static Site Example
 
 With [this example](./docker-compose-static/) we use the NGINX docker image and docker compose to host a static website. This idea can be used to host an SPA by simply putting the built distribution of your application in the expected directory for static hosting.
 
@@ -134,23 +136,23 @@ services:
 
 Test it out by running `docker compose up` from the `/docker-compose-static` directory and then going to `localhost:8089` in your browser. You should see a basic hello world page.
 
-# Node Server Reverse Proxy with SSL Example
+## Reverse Proxy for a Node Server with SSL Example
 
 The code can be found in the [node-example](./node-example/) directory.
 
-## Node Servers and Containerization
+### Node Servers and Containerization
 
 This example shows how to create a simple node server, put it in a docker container, and run 3 instances of it using docker compose.
 
 Run these servers using `docker compose up`
 
-## NGINX Proxy Server
+### NGINX Proxy Server
 
 Next, use the `nginx.conf` file to run the nginx server which proxies and load balances traffic to the node servers.
 
 You will need to add the `nginx.conf` to your local installation of nginx and restart the server.
 
-## Self-Signed SSL Certificate
+### Self-Signed SSL Certificate
 
 You should also generate your own self-signed SSL certificate for access to the server over HTTPS using `openssl`
 
@@ -161,19 +163,21 @@ nodes - do not encrypt the private key with a passphrase
 days 365 - certificate is valid for a year
 newkey rsa:2048 creates a 2048 bit RSA key pair
 
-## Check out the server
+### Check out the server
 
 The basic `hello world` html page is now being served on `https://localhost:443` and traffic from `http://localhost` will also be redirected there.
 
-# Reverse Proxy with Multiple Services
+## Reverse Proxy with Multiple Services Example
 
 Create an NGINX reverse proxy for two different node services using docker compose
 [code](./docker-compose-multi-container/)
 
-# Load Balancer for a Vue Frontend and Node Backend Application
+## Load Balancer for a Vue Frontend and Node Backend Application
 
 [code](./vue-node-example/)
 
-# Go Server Reverse Proxy with SSL
+TODO: consolidate into a single docker-compose
+
+## Go Server Reverse Proxy with SSL
 
 [code](./go-example/)
