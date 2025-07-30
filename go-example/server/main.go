@@ -26,6 +26,6 @@ func main() {
 		fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
 	})
 
-	fmt.Println("Server starting on port 8080...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	fmt.Println("Server starting on port 8081")
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }

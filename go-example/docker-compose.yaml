@@ -1,0 +1,28 @@
+services:
+  load-balancer:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: ./Dockerfile
+    ports:
+      - 443:443
+      - 80:80
+    volumes:
+      - ./nginx/nginx-selfsigned.crt:/etc/nginx/nginx-selfsigned.crt
+      - ./nginx/nginx-selfsigned.key:/etc/nginx/nginx-selfsigned.key
+    depends_on:
+      - backend
+    networks:
+      - loadbalancing
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    ports:
+      - 8081:8081
+    networks:
+      - loadbalancing
+
+networks:
+  loadbalancing:
