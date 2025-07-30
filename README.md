@@ -4,7 +4,7 @@ This repo is a collection of templates and examples for how to use NGINX as a we
 
 ## Templates
 
-The following templates show the structure of different NGINX configurations to illustrate the structure but are not actually working files.
+The following templates show the structure of different NGINX configurations but are not actually working files.
 
 - [Web Server Template](./server/)
 - [Reverse Proxy Template](./reverse-proxy/)
